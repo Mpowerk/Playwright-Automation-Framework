@@ -1,10 +1,14 @@
 import { test, expect } from "@playwright/test";
 import LoginPage from "../pages/LoginPage";
 
-test("Positive Login Test - Lenmed Web System", async ({ page }) => {
+test("Lenmed Login Test - Positive Login Test", async ({ page }) => {
     const loginPage = new LoginPage(page);
 
-    const homePage = await loginPage.loginFlow("deonva@spesnet.co.za", "Xander!2");
+    // Use valid credentials from .env.uat
+    const homePage = await loginPage.loginFlow(
+        process.env.USERNAME!,
+        process.env.PASSWORD!
+    );
 
     await homePage.expectHomePageVisible();
 });
@@ -12,7 +16,8 @@ test("Positive Login Test - Lenmed Web System", async ({ page }) => {
 test('Lenmed Login Test - Negative Login with invalid credentials', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
-    await loginPage.loginFlow('invalid@spesnet.co.za', 'WrongPassword');
+    // Use Invalid credentials from .env.uat
+    await loginPage.loginFlow(process.env.INVALID_USERNAME!, process.env.INVALID_PASSWORD!);
 
     // Check for error popup message
     const errorMessage = page.locator('.sn-content', { hasText: 'Incorrect Credentials.' });

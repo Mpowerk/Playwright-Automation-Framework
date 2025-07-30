@@ -11,9 +11,6 @@ export default class LoginPage {
     private readonly usernameInput = "input[name='Email']";
     private readonly passwordInput = "input[name='PasswordHash']";
 
-    // private get loginButton() {
-    //     return this.page.locator("button:has-text('LOGIN')");
-    // }
     private get loginButton() {
     return this.page.locator("button:has(span.label:has-text('LOGIN'))");
 }
