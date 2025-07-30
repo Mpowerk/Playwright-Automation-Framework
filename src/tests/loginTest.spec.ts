@@ -6,8 +6,8 @@ test("Lenmed Login Test - Positive Login Test", async ({ page }) => {
 
     // Use valid credentials from .env.uat
     const homePage = await loginPage.loginFlow(
-        process.env.USERNAME!,
-        process.env.PASSWORD!
+        process.env.TEST_USERNAME!,
+        process.env.TEST_PASSWORD!
     );
 
     await homePage.expectHomePageVisible();

@@ -7,9 +7,11 @@ import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
 
-// Load .env file based on NODE_ENV value (default to .env.uat)
+// Load .env file from src/config based on NODE_ENV (default to uat)
 const ENV = process.env.NODE_ENV || 'uat';
-dotenv.config({ path: path.resolve(__dirname, `.env.${ENV}`) });
+// dotenv.config({ path: path.resolve(__dirname, `.env.${ENV}`) });
+dotenv.config({ path: path.resolve(__dirname, 'src', 'config', `.env.${ENV}`) });
+
 
 
 /**
@@ -30,8 +32,12 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: process.env.BASE_URL,
-
+    baseURL: process.env.BASE_URL, // Load from env
+    headless: false,          // <--- set this to false to run with GUI browser & ensure browser UI is shown
+    viewport: null, // disables default viewport, allows full screen
+    launchOptions: {
+      args: ['--start-maximized'], // tells browser to open maximized
+    },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     screenshot: 'on',

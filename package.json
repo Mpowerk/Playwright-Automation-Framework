@@ -4,9 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
-    "test:uat": "NODE_ENV=uat npx playwright test",
-    "test:prod": "NODE_ENV=prod npx playwright test", 
-    "test:stage": "NODE_ENV=stage npx playwright test"
+    "test:uat": "cross-env NODE_ENV=uat npx playwright test",
+    "test:prod": "cross-env NODE_ENV=prod npx playwright test",
+    "test:stage": "cross-env NODE_ENV=stage npx playwright test"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +14,8 @@
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.54.1",
-    "@types/node": "^24.1.0"
+    "@types/node": "^24.1.0",
+    "cross-env": "^10.0.0"
   },
   "dependencies": {
     "dotenv": "^17.2.1"

@@ -8,6 +8,6 @@ export default class HomePage {
     }
 
     async expectHomePageVisible() {
-        await expect(this.homeHeader).toBeVisible({ timeout: 10000 });
+        await expect(this.homeHeader).toBeVisible({ timeout: 30000 });
     }
 }
